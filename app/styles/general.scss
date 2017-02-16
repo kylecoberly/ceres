@@ -1,0 +1,20 @@
+body {
+  @include base-font;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  height: calc(100vh - #{$header-height});
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/hero.jpg");
+  background-position: center top;
+  background-repeat: no-repeat;
+  color: $white;
+}
+
+.hero-text {
+  font-size: 3rem;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10rem;
+}

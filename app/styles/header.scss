@@ -1,0 +1,16 @@
+header {
+  padding: 1rem 0 0 1rem;
+  margin-bottom: 1rem;
+  height: $header-height;
+  position: relative;
+  display: flex;
+  align-items: center;
+  img {
+    height: 100%;
+  }
+  h1 {
+    display: inline-block;
+    margin-left: 1rem;
+    @include primary-header-font;
+  }
+}

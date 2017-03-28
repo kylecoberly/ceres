@@ -1,0 +1,15 @@
+@mixin primary-typography {
+	font-family: "Museo Sans", Helvetica;
+	color: $black;
+}
+
+@mixin header-font {
+	@include primary-typography;
+	font-size: 2rem;
+}
+
+@mixin thick-font {
+	@include primary-typography;
+	color: $white;
+	font-weight: 700;
+}

@@ -1,0 +1,15 @@
+@import "utilities/color-functions";
+
+$primary-hue: #F7901E;
+
+$primary-color: hsl(hue($primary-hue), 100%, 50%);
+$secondary-color: complement($primary-color);
+
+$mixed-primary: harmonious-mix($secondary-color, $primary-color);
+
+$neutral: mix-neutral($secondary-color);
+$neutral-light: lighten($neutral, 20%);
+$neutral-dark: darken($neutral, 20%);
+
+$white: #fff;
+$black: #333;

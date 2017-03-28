@@ -1,0 +1,9 @@
+@mixin navigation-menu-item {
+	padding: 1rem;
+	box-shadow: 0 1px 1px $neutral-light;
+	transition: background-color 0.2s;
+	cursor: pointer;
+	&:hover {
+		background-color: lighten($neutral-dark, 10%);
+	}
+}

@@ -1,0 +1,25 @@
+.navigation-menu {
+	.bm-menu {
+		@include thick-font;
+		font-size: 1rem;
+		border-left: 3px solid $white;
+		border-shadow: -1px 0px 1px $black;
+		background-color: $neutral-dark;
+		li {
+			@include navigation-menu-item;
+		}
+	}
+	.ember-burger-menu.translucent-overlay .bm-outlet::after {
+		z-index: 20;
+		background: rgba(0, 0, 0, 0.7);
+	}
+	i.mdi-menu {
+		font-size: 3rem;
+		cursor: pointer;
+	}
+	i.mdi-close {
+		width: 100%;
+		font-size: 3rem;
+		text-align: right;
+	}
+}

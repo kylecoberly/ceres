@@ -1,0 +1,21 @@
+{{#burger-menu
+	position="right"
+	width=275
+ as |burger|}}
+	{{#burger.menu itemTagName="li" as |menu|}}
+		{{material-design-icon click=burger.state.actions.close name="close"}}
+		<ul {{action burger.state.actions.close}}>
+			{{#menu.item}}
+				{{#link-to "class-metrics"}}Classroom Metrics{{/link-to}}
+			{{/menu.item}}
+		</ul>
+	{{/burger.menu}}
+	{{#burger.outlet}}
+		{{app-header
+			open=(action burger.state.actions.open)
+		}}
+		<div class="body-wrapper">
+			{{yield}}
+		</div>
+	{{/burger.outlet}}
+{{/burger-menu}}

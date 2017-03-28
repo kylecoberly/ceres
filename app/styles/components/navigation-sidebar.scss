@@ -1,0 +1,11 @@
+.navigation-sidebar {
+	@include thick-font;
+	color: $white;
+	background-color: $neutral-dark;
+	box-shadow: 1px 1px 1px $black;
+	nav {
+		li {
+			@include navigation-menu-item;
+		}
+	}
+}

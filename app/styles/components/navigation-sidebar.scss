@@ -1,0 +1,13 @@
+.navigation-sidebar {
+	height: 100%;
+	max-width: 25%;
+	background-color: $neutral-dark;
+	@include thick-font;
+	color: $white;
+	box-shadow: 1px 1px 1px $black;
+	nav {
+		li {
+			@include navigation-menu-item;
+		}
+	}
+}

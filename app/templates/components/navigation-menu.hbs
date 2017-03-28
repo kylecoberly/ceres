@@ -1,0 +1,28 @@
+{{#burger-menu
+	position="right"
+	width=275
+ as |burger|}}
+	{{#burger.menu itemTagName="li" as |menu|}}
+		{{material-design-icon click=burger.state.actions.close name="close"}}
+		<ul>
+			{{#menu.item}}
+				<p>Hey Now</p>
+			{{/menu.item}}
+			{{#menu.item}}
+				<p>Hey Now</p>
+			{{/menu.item}}
+			{{#menu.item}}
+				<p>Hey Now</p>
+			{{/menu.item}}
+		</ul>
+	{{/burger.menu}}
+	{{#burger.outlet}}
+		<header>
+			<h1>Ceres</h1>
+			{{#if media.isMobile}}
+				{{material-design-icon click=burger.state.actions.toggle name="menu"}}
+			{{/if}}
+		</header>
+		{{yield}}
+	{{/burger.outlet}}
+{{/burger-menu}}

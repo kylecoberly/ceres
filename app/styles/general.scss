@@ -1,0 +1,31 @@
+$small-breakpoint: 300px;
+$medium-breakpoint: 800px;
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	color: $black;
+	background-color: $white;
+	// @media (min-width: $small-breakpoint) {
+	// 	& {
+	// 		padding: 1rem;
+	// 	}
+	// }
+}
+
+main {
+	height: calc(100vh - 60px);
+	background-color: $neutral-light;
+}
+
+@mixin navigation-menu-item {
+	padding: 1rem;
+	box-shadow: 0 1px 1px $neutral-light;
+	transition: background-color 0.2s;
+	cursor: pointer;
+	&:hover {
+		background-color: lighten($neutral-dark, 10%);
+	}
+}

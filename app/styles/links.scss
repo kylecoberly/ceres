@@ -1,0 +1,19 @@
+.links {
+	li {
+		margin-bottom: 0.5rem;
+		a {
+			display: block;
+			max-width: 30rem;
+			box-shadow: -1px 1px 1px $black;
+			padding: 1rem;
+			background-color: $neutral-light;
+			transition: background-color 0.2s;
+			&:hover {
+				background-color: lighten($neutral-light, 10%);
+			}
+			h3 {
+				@include link-font;
+			}
+		}
+	}
+}

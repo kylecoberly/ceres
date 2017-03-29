@@ -6,6 +6,10 @@
 	nav {
 		li {
 			@include navigation-menu-item;
+			a {
+				display: inline-block;
+				width: 100%;
+			}
 		}
 	}
 }

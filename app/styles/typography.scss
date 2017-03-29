@@ -10,5 +10,6 @@
 
 @mixin thick-font {
 	@include primary-typography;
+	color: $white;
 	font-weight: 700;
 }

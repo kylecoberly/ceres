@@ -1,63 +1,32 @@
-$small-breakpoint: 300px;
-$medium-breakpoint: 800px;
-
+// More resets
 * {
 	box-sizing: border-box;
 }
-
 body {
 	color: $black;
 	background-color: $white;
-	// @media (min-width: $small-breakpoint) {
-	// 	& {
-	// 		padding: 1rem;
-	// 	}
-	// }
 }
-
-main {
-	height: calc(100vh - 60px);
-	width: 100%;
-	background-color: $white;
-	position: relative;
-	img {
-		max-width: 100%;
-	}
-}
-
-.body-wrapper {
-	display: flex;
-	> aside {
-		width: 25%;
-	}
-}
-
 a {
 	text-decoration: none;
 	color: inherit;
 }
 
-.hero {
-	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/hero.jpg");
-	height: 100%;
+// Overall layout
+.body-wrapper {
 	display: flex;
-	align-items: center;
-	justify-content: center;
-	h2 {
-		@include thick-font;
-		color: $white;
-		font-size: 4rem;
-		margin-bottom: 3rem;
-		text-align: center;
+	flex-flow: row nowrap;
+	> aside {
+		flex: 1;
+	}
+	> main {
+		position: relative;
+		width: 100%;
+		min-height: calc(100vh - 60px);
+		background-color: $white;
+		flex: 3;
 	}
 }
 
-@mixin navigation-menu-item {
-	padding: 1rem;
-	box-shadow: 0 1px 1px $neutral-light;
-	transition: background-color 0.2s;
-	cursor: pointer;
-	&:hover {
-		background-color: lighten($neutral-dark, 10%);
-	}
-}
+// Utilities
+@import "utilities/navigation";
+@import "utilities/hero";

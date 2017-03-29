@@ -11,15 +11,9 @@
 		</ul>
 	{{/burger.menu}}
 	{{#burger.outlet}}
-		<header class="{{if media.isMobile 'mobile-header'}}">
-			{{#link-to "index" class="logo-link"}}
-				<img class="logo" src="images/logo.png" alt="Logo" />
-				<h1>Ceres</h1>
-			{{/link-to}}
-			{{#if media.isMobile}}
-				{{material-design-icon click=burger.state.actions.toggle name="menu"}}
-			{{/if}}
-		</header>
+		{{app-header
+			open=(action burger.state.actions.open)
+		}}
 		<div class="body-wrapper">
 			{{yield}}
 		</div>

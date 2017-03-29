@@ -1,26 +1,24 @@
 .navigation-menu {
-}
-.mdi-menu {
-	font-size: 3rem;
-}
-.bm-menu {
-	background-color: $neutral-dark;
-	border-left: 3px solid $white;
-	border-shadow: -1px 0px 1px $black;
-	@include thick-font;
-	color: $white;
-	font-size: 2rem;
-	position: relative;
-	.mdi-close {
-		width: 100%;
-		text-align: right;
+	.bm-menu {
+		@include thick-font;
+		font-size: 1rem;
+		border-left: 3px solid $white;
+		border-shadow: -1px 0px 1px $black;
+		background-color: $neutral-dark;
+		li {
+			@include navigation-menu-item;
+		}
+	}
+	.ember-burger-menu.translucent-overlay .bm-outlet::after {
+		z-index: 20;
+		background: rgba(0, 0, 0, 0.7);
+	}
+	i.mdi-menu {
 		font-size: 3rem;
 	}
-	li {
-		@include navigation-menu-item;
+	i.mdi-close {
+		width: 100%;
+		font-size: 3rem;
+		text-align: right;
 	}
-}
-
-.ember-burger-menu.translucent-overlay .bm-outlet::after {
-	background: rgba(0, 0, 0, 0.7);
 }

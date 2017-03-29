@@ -1,8 +1,6 @@
-{{#navigation-menu menuIsOpen=menuIsOpen}}
+{{#navigation-menu}}
 	{{#unless media.isMobile}}
-		<aside>
-			{{navigation-sidebar}}
-		</aside>
+		{{navigation-sidebar}}
 	{{/unless}}
 	<main>
 		{{outlet}}

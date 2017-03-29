@@ -3,8 +3,8 @@
 	box-sizing: border-box;
 }
 body {
-	color: $black;
-	background-color: $white;
+	@include primary-typography;
+	background-color: $black;
 }
 a {
 	text-decoration: none;
@@ -22,7 +22,7 @@ a {
 		position: relative;
 		width: 100%;
 		min-height: calc(100vh - 60px);
-		background-color: $white;
+		background-color: $neutral-light;
 		flex: 3;
 	}
 }

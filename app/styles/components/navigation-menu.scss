@@ -7,6 +7,9 @@
 		background-color: $neutral-dark;
 		li {
 			@include navigation-menu-item;
+			a {
+				display: block;
+			}
 		}
 	}
 	.ember-burger-menu.translucent-overlay .bm-outlet::after {

@@ -4,12 +4,24 @@
 }
 
 @mixin header-font {
-	@include primary-typography;
 	font-size: 2rem;
 }
 
 @mixin thick-font {
-	@include primary-typography;
 	color: $white;
 	font-weight: 700;
+}
+
+@mixin subheader-font {
+	font-size: 2rem;
+	font-weight: 300;
+	margin-bottom: 1rem;
+}
+
+@mixin link-font {
+	color: $white;
+	text-shadow: 1px 1px 1px $black;
+	font-size: 1.5rem;
+	font-weight: 700;
+	margin-bottom: 0.5rem;
 }

@@ -17,7 +17,39 @@ body {
 
 main {
 	height: calc(100vh - 60px);
-	background-color: $neutral-light;
+	width: 100%;
+	background-color: $white;
+	position: relative;
+	img {
+		max-width: 100%;
+	}
+}
+
+.body-wrapper {
+	display: flex;
+	> aside {
+		width: 25%;
+	}
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.hero {
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/hero.jpg");
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	h2 {
+		@include thick-font;
+		color: $white;
+		font-size: 4rem;
+		margin-bottom: 3rem;
+		text-align: center;
+	}
 }
 
 @mixin navigation-menu-item {

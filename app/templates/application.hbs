@@ -1,8 +1,10 @@
 {{#navigation-menu}}
-	<main>
-		{{#unless media.isMobile}}
+	{{#unless media.isMobile}}
+		<aside>
 			{{navigation-sidebar}}
-		{{/unless}}
+		</aside>
+	{{/unless}}
+	<main>
 		{{outlet}}
 	</main>
 {{/navigation-menu}}

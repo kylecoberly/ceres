@@ -1,14 +1,34 @@
 header {
 	@include header-font;
 	padding: 1rem;
+	background-color: $black;
+	color: $white;
 	box-shadow: 1px 1px 1px $black;
 	height: 60px;
 	position: relative;
 	display: flex;
 	flex-flow: row nowrap;
-	justify-content: space-between;
+	justify-content: left;
 	align-items: center;
 	i {
 		display: inline-block;
+	}
+	.logo-link {
+		height: 100%;
+		display: inline-block;
+		position: relative;
+		img {
+			display: inline-block;
+			max-height: 100%;
+			transform: translateY(2px);
+		}
+		h1 {
+			display: inline-block;
+			margin-left: 6px;
+			transform: translateY(-2px);
+		}
+	}
+	&.mobile-header {
+		justify-content: space-between;
 	}
 }

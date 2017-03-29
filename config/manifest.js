@@ -12,7 +12,7 @@ module.exports = function(/* environment, appConfig */) {
 		start_url: "/",
 		display: "standalone",
 		background_color: "83b0e2",
-		theme_color: "#F7901E",
+		theme_color: "#fff",
 		icons: [
 		]
 	};

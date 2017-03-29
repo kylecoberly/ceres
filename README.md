@@ -1,9 +1,10 @@
-# ceres
+# Ceres
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+A staff and classroom management tool, designed for use in Galvanize Denver WDI.
 
-## Prerequisites
+## Collaboration Instructions
+
+### Prerequisites
 
 You will need the following things properly installed on your computer.
 
@@ -13,37 +14,37 @@ You will need the following things properly installed on your computer.
 * [Ember CLI](https://ember-cli.com/)
 * [PhantomJS](http://phantomjs.org/)
 
-## Installation
+### Installation
 
 * `git clone <repository-url>` this repository
 * `cd ceres`
 * `npm install`
 * `bower install`
 
-## Running / Development
+### Running / Development
 
 * `ember serve`
 * Visit your app at [http://localhost:4200](http://localhost:4200).
 
-### Code Generators
+#### Code Generators
 
 Make use of the many generators for code, try `ember help generate` for more details
 
-### Running Tests
+#### Running Tests
 
 * `ember test`
 * `ember test --server`
 
-### Building
+#### Building
 
 * `ember build` (development)
 * `ember build --environment production` (production)
 
-### Deploying
+#### Deploying
 
-Specify what it takes to deploy your app.
+You can build the site and deploy the `/dist` folder to a static site, or you can deploy to Heroku with a tool like the [Ember Buildpack](://github.com/tonycoco/heroku-buildpack-ember-cli).
 
-## Further Reading / Useful Links
+### Further Reading / Useful Links
 
 * [ember.js](http://emberjs.com/)
 * [ember-cli](https://ember-cli.com/)

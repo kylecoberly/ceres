@@ -10,6 +10,10 @@ a {
 	text-decoration: none;
 	color: inherit;
 }
+p {
+	@include body-font;
+	margin-bottom: 1rem;
+}
 
 // Overall layout
 .body-wrapper {

@@ -10,6 +10,7 @@
 @mixin thick-font {
 	color: $white;
 	font-weight: 700;
+	line-height: initial;
 }
 
 @mixin subheader-font {
@@ -18,10 +19,31 @@
 	margin-bottom: 1rem;
 }
 
+@mixin emphasis-font {
+	font-size: 1.2rem;
+	font-weight: 700;
+	margin-bottom: 0.2rem;
+}
+
+@mixin body-font {
+	font-size: 1.2rem;
+	line-height: 1.4rem;
+}
+
 @mixin link-font {
 	color: $white;
 	text-shadow: 1px 1px 1px $black;
 	font-size: 1.5rem;
 	font-weight: 700;
 	margin-bottom: 0.5rem;
+}
+
+p {
+	max-width: 30rem;
+}
+em {
+	font-style: italic;
+}
+strong {
+	font-weight: bold;
 }

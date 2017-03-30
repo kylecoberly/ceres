@@ -3,6 +3,7 @@
 	color: $white;
 	background-color: $neutral-dark;
 	box-shadow: 1px 1px 1px $black;
+	z-index: 5;
 	nav {
 		li {
 			@include navigation-menu-item;

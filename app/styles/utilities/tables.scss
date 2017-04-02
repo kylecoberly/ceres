@@ -1,0 +1,30 @@
+table {
+	caption {
+		display: none;
+	}
+    td {
+        padding: 0.5rem 1rem;
+    }
+    thead th {
+        text-align: center;
+        font-weight: 700;
+        padding: 0 1rem;
+    }
+    tbody th {
+        text-align: right;
+        font-style: italic;
+        padding-right: 1rem;
+        padding-left: 1rem;
+        max-width: 20rem;
+    }
+    tfoot {
+        border-top: 1px solid #000;
+        th {
+            font-weight: 700;
+            text-align: right;
+        }
+        .total {
+            font-weight: 700;
+        }
+    }
+}

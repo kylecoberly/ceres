@@ -1,0 +1,17 @@
+.schedules {
+	.information-sessions-schedule > tbody {
+		td:nth-child(even) {
+			background-color: hsl(240, 30%, 90%);
+		}
+	}
+	.workshops-schedule > tbody {
+		td:nth-child(2), td:nth-child(3), td:nth-child(3) {
+			background-color: hsl(240, 30%, 90%);
+		}
+	}
+	.alumni-anonymous-schedule > tbody {
+		td:nth-child(2), td:nth-child(3) {
+			background-color: hsl(240, 30%, 90%);
+		}
+	}
+}

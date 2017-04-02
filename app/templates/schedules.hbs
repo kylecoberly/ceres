@@ -8,39 +8,45 @@
 	<section class="workshops">
 		<h2>Workshops</h2>
 		{{#if media.isMobile}}
-			<ul>
-				{{#each workshopSchedule as |week|}}
-					<li>
-						<p>{{week.label}}</p>
-						{{#each week.days as |day|}}
-							<time>{{day.date}}</time>
-							<p>{{day.instructor}}</p>
-						{{/each}}
-					</li>
-				{{/each}}
-			</ul>
-		{{else}}
-			<table>
-				<caption>Workshops</caption>
-				<thead>
-					<tr>
-						<th>Week</th>
-						<th colspan="2">Tuesday</th>
-						<th colspan="2">Thursday</th>
-					</tr>
-				</thead>
-				<tbody>
-					{{#each workshopSchedule as |week|}}
-						<tr>
-							<td>{{week.label}}</td>
+			{{#each model.workshopSchedules as |workshopSchedule|}}
+				<h3>{{workshopSchedule.workshopName}}</h3>
+				<ul>
+					{{#each workshopSchedule.weeks as |week|}}
+						<li>
+							<p>{{week.label}}</p>
 							{{#each week.days as |day|}}
-								<td><time>{{day.date}}</time></td>
-								<td>{{day.instructor}}</td>
+								<time>{{day.date}}</time>
+								<p>{{day.instructor}}</p>
 							{{/each}}
-						</tr>
+						</li>
 					{{/each}}
-				</tbody>
-			</table>
+				</ul>
+			{{/each}}
+		{{else}}
+			{{#each model.workshopSchedules as |workshopSchedule|}}
+				<h3>{{workshopSchedule.workshopName}}</h3>
+				<table>
+					<caption>{{workshopSchedule.workshopName}}</caption>
+					<thead>
+						<tr>
+							<th>Week</th>
+							<th colspan="2">Tuesday</th>
+							<th colspan="2">Thursday</th>
+						</tr>
+					</thead>
+					<tbody>
+						{{#each workshopSchedule.weeks as |week|}}
+							<tr>
+								<td>{{week.label}}</td>
+								{{#each week.days as |day|}}
+									<td><time>{{day.date}}</time></td>
+									<td>{{day.instructor}}</td>
+								{{/each}}
+							</tr>
+						{{/each}}
+					</tbody>
+				</table>
+			{{/each}}
 		{{/if}}
 	</section>
 	<section>

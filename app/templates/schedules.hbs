@@ -5,92 +5,43 @@
 			<img src="images/instructor-schedule.png" alt="Instructor Schedule" />
 		</figure>
 	</section>
-	<section>
+	<section class="workshops">
 		<h2>Workshops</h2>
-		<table class="workshops-schedule">
-			<caption>Workshops</caption>
-			<thead>
-				<tr>
-					<th>Week</th>
-					<th colspan="3">Tuesday</th>
-					<th colspan="3">Thursday</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>1</td>
-					<td>3/14</td>
-					<td>Berto</td>
-					<td></td>
-					<td>3/16</td>
-					<td>Berto</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>3/21</td>
-					<td>Danny</td>
-					<td></td>
-					<td>3/23</td>
-					<td>Isaac</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>3/28</td>
-					<td>Peter</td>
-					<td></td>
-					<td>3/30</td>
-					<td>Peter</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>4</td>
-					<td>4/4</td>
-					<td>Danny</td>
-					<td></td>
-					<td>4/6</td>
-					<td>Kyle</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>5</td>
-					<td>4/11</td>
-					<td>Chad</td>
-					<td></td>
-					<td>4/13</td>
-					<td>Chad</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>6</td>
-					<td>4/18</td>
-					<td>Kim</td>
-					<td></td>
-					<td>4/20</td>
-					<td>Carlos</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>7</td>
-					<td>4/25</td>
-					<td>Brooks</td>
-					<td></td>
-					<td>4/27</td>
-					<td>Brooks</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>8</td>
-					<td>5/2</td>
-					<td>CJ</td>
-					<td></td>
-					<td>5/4</td>
-					<td>CJ</td>
-					<td></td>
-				</tr>
-			</tbody>
-		</table>
+		{{#if media.isMobile}}
+			<ul>
+				{{#each workshopSchedule as |week|}}
+					<li>
+						<p>{{week.label}}</p>
+						{{#each week.days as |day|}}
+							<time>{{day.date}}</time>
+							<p>{{day.instructor}}</p>
+						{{/each}}
+					</li>
+				{{/each}}
+			</ul>
+		{{else}}
+			<table>
+				<caption>Workshops</caption>
+				<thead>
+					<tr>
+						<th>Week</th>
+						<th colspan="2">Tuesday</th>
+						<th colspan="2">Thursday</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each workshopSchedule as |week|}}
+						<tr>
+							<td>{{week.label}}</td>
+							{{#each week.days as |day|}}
+								<td><time>{{day.date}}</time></td>
+								<td>{{day.instructor}}</td>
+							{{/each}}
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		{{/if}}
 	</section>
 	<section>
 		<h2>Alumni Anonymous</h2>
@@ -126,66 +77,13 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>1/11</td>
-					<td>Platte</td>
-					<td>Mairin</td>
-				</tr>
-				<tr>
-					<td>2/6</td>
-					<td>Platte</td>
-					<td>Kyle</td>
-				</tr>
-				<tr>
-					<td>3/13</td>
-					<td>Platte</td>
-					<td>CJ</td>
-				</tr>
-				<tr>
-					<td>4/6</td>
-					<td>Platte</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>5/3</td>
-					<td>Platte</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>6/5</td>
-					<td>Golden Triangle</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>7/6</td>
-					<td>Platte</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>8/2</td>
-					<td>Platte</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9/5</td>
-					<td>Golden Triangle</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>10/5</td>
-					<td>Platte</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>11/6</td>
-					<td>Platte</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>12/5</td>
-					<td>Golden Triangle</td>
-					<td></td>
-				</tr>
+				{{#each infoSessionSchedule as |session|}}
+					<tr>
+						<td>{{session.date}}</td>
+						<td>{{session.campus}}</td>
+						<td>{{session.instructor}}</td>
+					</tr>
+				{{/each}}
 			</tbody>
 		</table>
 	</section>

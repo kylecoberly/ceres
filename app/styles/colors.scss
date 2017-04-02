@@ -8,8 +8,10 @@ $secondary-color: complement($primary-color);
 $mixed-primary: harmonious-mix($secondary-color, $primary-color);
 
 $neutral: mix-neutral($secondary-color);
-$neutral-light: lighten($neutral, 20%);
-$neutral-dark: darken($neutral, 20%);
+$neutral-light: lighten($neutral, 30%);
+$neutral-dark: darken($neutral, 30%);
 
 $white: #fff;
 $black: #333;
+$light-grey: hsl(hue($secondary-color), 10%, 90%);
+$dark-grey: hsl(hue($secondary-color), 10%, 10%);

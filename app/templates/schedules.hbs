@@ -1,0 +1,80 @@
+<div class="schedules">
+	<section>
+		<h2>Class Schedule</h2>
+		<figure class="time-off">
+			<img src="images/instructor-schedule.png" alt="Instructor Schedule" />
+		</figure>
+	</section>
+	<section class="workshops">
+		<h2>Workshops</h2>
+		{{#if media.isMobile}}
+			{{#each model.workshopSchedules as |workshopSchedule|}}
+				{{workshop-schedule-mobile model=workshopSchedule}}
+			{{/each}}
+		{{else}}
+			{{#each model.workshopSchedules as |workshopSchedule|}}
+				{{workshop-schedule model=workshopSchedule}}
+			{{/each}}
+		{{/if}}
+	</section>
+	<section>
+		<h2>Alumni Anonymous</h2>
+		<table class="alumni-anonymous-schedule">
+			<caption>Alumni Anonymous</caption>
+			<thead>
+				<tr>
+					<th>Tuesday</th>
+					<th>Thursday</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Chad</td>
+					<td>Chad</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+	<section>
+		<h2>Information Sessions</h2>
+		<table class="information-sessions-schedule">
+			<caption>Information Sessions</caption>
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Campus</th>
+					<th>Instructor</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each infoSessionSchedule as |session|}}
+					<tr>
+						<td>{{session.date}}</td>
+						<td>{{session.campus}}</td>
+						<td>{{session.instructor}}</td>
+					</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</section>
+	<section>
+		<h2>Other Events</h2>
+		<table class="information-sessions-schedule">
+			<caption>Other Events</caption>
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Event</th>
+					<th>Instructor</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1/31</td>
+					<td>Crush The Take-Home</td>
+					<td>Danny</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+</div>

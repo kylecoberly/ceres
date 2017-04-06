@@ -9,10 +9,10 @@
 		</tr>
 	</thead>
 	<tbody>
-		{{#each model.weeks as |week|}}
+		{{#each model.workshopScheduleWeeks as |week|}}
 			<tr>
 				<td data-test-week-label>{{week.label}}</td>
-				{{#each week.days as |day|}}
+				{{#each week.workshopScheduleDays as |day|}}
 					<td><time data-test-date>{{day.formattedDate}}</time></td>
 					<td data-test-instructor>{{day.instructor.firstName}}</td>
 				{{/each}}

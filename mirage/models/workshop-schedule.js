@@ -1,5 +1,5 @@
 import {Model, hasMany} from "ember-cli-mirage";
 
 export default Model.extend({
-	weeks: hasMany("workshopScheduleWeek")
+	workshopScheduleWeeks: hasMany("workshopScheduleWeek")
 });

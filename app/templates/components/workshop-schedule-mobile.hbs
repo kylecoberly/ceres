@@ -1,9 +1,9 @@
 <h3 data-test-workshop-name>{{model.workshopName}}</h3>
 <ul>
-	{{#each model.weeks as |week|}}
+	{{#each model.workshopScheduleWeeks as |week|}}
 		<li>
 			<p data-test-week-label>{{week.label}}</p>
-			{{#each week.days as |day|}}
+			{{#each week.workshopScheduleDays as |day|}}
 				<time data-test-date>{{day.formattedDate}}</time>
 				<p data-test-instructor>{{day.instructor.firstName}}</p>
 			{{/each}}

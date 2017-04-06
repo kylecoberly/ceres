@@ -9,9 +9,9 @@ moduleForComponent("workshop-schedule-mobile", "Integration | Component | worksh
 test("it shows data", function(assert){
 	this.set("model", {
 		workshopName: "JS",
-		weeks: [{
+		workshopScheduleWeeks: [{
 			label: "Week 1",
-			days: [{
+			workshopScheduleDays: [{
 				formattedDate: "3/15",
 				instructor: {
 					firstName: "Kyle"

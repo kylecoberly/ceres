@@ -43,7 +43,7 @@ module.exports = function(environment) {
 	}
 
 	if (environment === "production") {
-		ENV.APP.apiURL = "https://galvanize-ceres-api.herokuapp.com";
+		ENV.apiURL = "https://galvanize-ceres-api.herokuapp.com";
 	}
 
 	return ENV;

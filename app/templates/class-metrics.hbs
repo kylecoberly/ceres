@@ -1,8 +1,10 @@
 <section class="metrics">
 	<h2>Class Metrics</h2>
 	<div class="hiring">
-		{{#each model as |cohort|}}
-			{{cohort-job-stats cohort=cohort}}
+		{{#each sortedCohorts as |cohort|}}
+			{{#if cohort.isActive}}
+				{{cohort-job-stats cohort=cohort}}
+			{{/if}}
 		{{/each}}
 	</div>
 </section>

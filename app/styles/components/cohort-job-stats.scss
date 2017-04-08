@@ -20,7 +20,7 @@
 	}
 	.job-stats {
 		flex-grow: 1;
-		.average {
+		.average, .days-remaining {
 			margin-top: 1rem;
 			h3, p {
 				display: inline;

@@ -58,3 +58,11 @@ test("it can calculate the median days to hire", function(assert) {
 	assert.equal(model.get("medianDaysToHire"), 2);
 });
 
+test("it can calculate time remaining for a cohort", function(assert) {
+	let model = this.subject({
+		today: "2017-02-01",
+		hiringDeadline: "2017-02-03"
+	});
+
+	assert.equal(model.get("daysToHiringDeadline"), 2);
+});

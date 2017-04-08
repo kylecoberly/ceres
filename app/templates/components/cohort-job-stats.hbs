@@ -1,0 +1,14 @@
+<div class="cohort-label">
+	<h3 data-test-cohort-label={{cohort.id}}>{{cohort.label}}</h3>
+</div>
+<div class="job-stats" data-test-cohort-id={{cohort.id}}>
+	<h3>Hired</h3>
+	{{progress-bar
+		max=cohort.studentCount
+		value=cohort.totalHired
+	}}
+	<div class="average">
+		<h3>Average:</h3>
+		<p data-test-cohort-median-days-to-hire>{{cohort.medianDaysToHire}} days</p>
+	</div>
+</div>

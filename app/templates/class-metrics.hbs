@@ -1,3 +1,8 @@
-<section>
-	<h2>Metrics coming soon!</h2>
+<section class="metrics">
+	<h2>Class Metrics</h2>
+	<div class="hiring">
+		{{#each model as |cohort|}}
+			{{cohort-job-stats cohort=cohort}}
+		{{/each}}
+	</div>
 </section>

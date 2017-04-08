@@ -9,6 +9,9 @@ export default function() {
 	this.get("/workshop-schedule-days/:id");
 	this.get("/instructors");
 	this.get("/instructors/:id");
+
+	this.get("/cohorts");
+	this.get("/cohorts/:id");
 	// These comments are here to help you get started. Feel free to delete them.
 
 	/*

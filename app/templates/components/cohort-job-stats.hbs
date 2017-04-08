@@ -7,8 +7,10 @@
 		max=cohort.studentCount
 		value=cohort.totalHired
 	}}
-	<div class="average">
-		<h3>Average:</h3>
-		<p data-test-cohort-median-days-to-hire>{{cohort.medianDaysToHire}} days</p>
-	</div>
+	{{#if cohort.medianDaysToHire}}
+		<div class="average" data-test-average>
+			<h3>Average:</h3>
+			<p data-test-cohort-median-days-to-hire>{{cohort.medianDaysToHire}} days</p>
+		</div>
+	{{/if}}
 </div>

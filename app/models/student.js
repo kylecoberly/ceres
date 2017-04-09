@@ -7,6 +7,8 @@ export default DS.Model.extend({
 	fullName: Ember.computed("firstName", "lastName", function(){
 		return `${this.get("firstName")} ${this.get("lastName")}`;
 	}),
-	isHired: DS.attr("boolean"),
+	isHired: Ember.computed("hireDate", function(){
+		return !!this.get("hireDate");
+	}),
 	hireDate: DS.attr("date")
 });

@@ -66,3 +66,25 @@ test("it can calculate time remaining for a cohort", function(assert) {
 
 	assert.equal(model.get("daysToHiringDeadline"), 2);
 });
+
+test("it can calculate whether a deadline has passed", function(assert) {
+	let model = this.subject({
+		today: "2017-01-01",
+		hiringDeadline: "2017-01-02"
+	});
+
+	assert.equal(model.get("deadlinePassed"), false, "shows not passed");
+	Ember.run(() => model.set("today", "2017-02-01"));
+	assert.equal(model.get("deadlinePassed"), true, "shows passed");
+});
+
+test("it can calculate whether or not the cohort has ended", function(assert) {
+	let model = this.subject({
+		today: "2017-01-01",
+		lastDay: "2017-01-02"
+	});
+
+	assert.equal(model.get("cohortComplete"), false, "shows not complete");
+	Ember.run(() => model.set("today", "2017-02-01"));
+	assert.equal(model.get("cohortComplete"), true, "shows complete");
+});

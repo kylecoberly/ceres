@@ -8,14 +8,15 @@ export default DS.Model.extend({
 	hiringDeadline: DS.attr("date"),
 	isActive: DS.attr("boolean"),
 	students: DS.hasMany("student", {async: true}),
+	deadlinePassed: Ember.computed("today", "daysToHiringDeadline", function(){
+		return this.get("daysToHiringDeadline") < 0;
+	}),
 	today: Ember.computed(function(){
 		return new Date();
 	}),
 	daysToHiringDeadline: Ember.computed("today", "hiringDeadline", function(){
 		return Math.floor(
-			(new Date(this.get("hiringDeadline"))
-			 - new Date(this.get("today")))
-		   	/ (1000 * 60 * 60 * 24)
+			(new Date(this.get("hiringDeadline")) - new Date(this.get("today"))) / (1000 * 60 * 60 * 24)
 		);
 	}),
 	medianDaysToHire: Ember.computed("lastDay", "students.@each.hireDate", function(){
@@ -34,5 +35,8 @@ export default DS.Model.extend({
 	}),
 	studentCount: Ember.computed("students.@each", function(){
 		return this.get("students.length");
+	}),
+	cohortComplete: Ember.computed("today", "lastDay", function(){
+		return this.get("lastDay") < this.get("today");
 	})
 });

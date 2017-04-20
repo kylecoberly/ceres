@@ -2,7 +2,7 @@ import Ember from "ember";
 import {moduleForModel, test} from "ember-qunit";
 
 moduleForModel("student", "Unit | Model | student", {
-	needs: []
+	needs: ["model:performance"]
 });
 
 test("it can calculate the full name", function(assert) {

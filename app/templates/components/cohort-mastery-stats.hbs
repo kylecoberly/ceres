@@ -1,0 +1,15 @@
+<div class="cohort-label">
+	<h3 data-test-cohort-label>{{cohort.label}}</h3>
+</div>
+<div class="cohort-time">
+	<div class="time-elapsed" data-test-time-elapsed>{{cohort.percentageElapsed}}</div>
+	<div class="time-remaining"></div>
+</div>
+<div class="mastery-stats">
+	<ul data-test-cohort-mastery-scores>
+		{{#each cohort.scores as |score|}}
+			<li class="score score-{{score.label}}" data-test-mastery-score>{{score.percentage}}</li>
+		{{/each}}
+	</ul>
+</div>
+

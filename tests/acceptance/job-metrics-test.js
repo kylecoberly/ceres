@@ -1,7 +1,6 @@
 import {test} from "qunit";
 import moduleForAcceptance from "ceres/tests/helpers/module-for-acceptance";
-import page from "ceres/tests/pages/class-metrics";
-import testSelector from "ember-test-selectors";
+import jobsPage from "ceres/tests/pages/cohort-jobs";
 
 moduleForAcceptance("Acceptance | job metrics");
 
@@ -17,11 +16,11 @@ test("It should show job statistics", function(assert){
 		students: [student1, student2]
 	});
 
-	page.visit();
+	jobsPage.visit();
 	andThen(function(){
 		assert.equal(currentURL(), "/class-metrics", "Correct URL");
-		assert.equal(find(testSelector("cohort-label"), 0).text().trim(), "g[99]", "Correct cohort label");
-		assert.equal(find(`${testSelector("cohort-id", 0)} ${testSelector("progress-percentage")}`).text().trim(), "50%", "Correct percentage");
+		assert.equal(jobsPage.cohorts(0).label, "g[99]", "Correct cohort label");
+		assert.equal(jobsPage.cohorts(0).jobProgressPercentage, "50%", "Correct percentage");
 	});
 });
 
@@ -42,10 +41,10 @@ test("It shows cohort job widgets sorted by start date", function(assert){
 		isActive: true
 	});
 
-	page.visit();
+	jobsPage.visit();
 	andThen(function(){
-		assert.equal(find(".cohort-job-stats:nth-child(1) .cohort-label h3").text().trim(), "g0");
-		assert.equal(find(".cohort-job-stats:nth-child(2) .cohort-label h3").text().trim(), "g1");
-		assert.equal(find(".cohort-job-stats:nth-child(3) .cohort-label h3").text().trim(), "g2");
+		assert.equal(jobsPage.cohorts(0).label, "g0");
+		assert.equal(jobsPage.cohorts(1).label, "g1");
+		assert.equal(jobsPage.cohorts(2).label, "g2");
 	});
 });

@@ -8,16 +8,9 @@ export default DS.Model.extend({
 	hiringDeadline: DS.attr("date"),
 	isActive: DS.attr("boolean"),
 	students: DS.hasMany("student", {async: true}),
-	deadlinePassed: Ember.computed("today", "daysToHiringDeadline", function(){
-		return this.get("daysToHiringDeadline") < 0;
-	}),
-	today: Ember.computed(function(){
-		return new Date();
-	}),
-	daysToHiringDeadline: Ember.computed("today", "hiringDeadline", function(){
-		return Math.floor(
-			(new Date(this.get("hiringDeadline")) - new Date(this.get("today"))) / (1000 * 60 * 60 * 24)
-		);
+	time: Ember.inject.service("time"),
+	studentCount: Ember.computed("students.@each", function(){
+		return this.get("students.length");
 	}),
 	medianDaysToHire: Ember.computed("lastDay", "students.@each.hireDate", function(){
 		var hireDates = this.get("students")
@@ -26,17 +19,62 @@ export default DS.Model.extend({
 			.toArray()
 			.sort();
 		var medianHireDate = hireDates[Math.floor(hireDates.length / 2)];
-		return (new Date(medianHireDate) - new Date(this.get("lastDay"))) / (1000 * 60 * 60 * 24);
+		return this.dayDifference(medianHireDate, this.get("lastDay"));
 	}),
 	totalHired: Ember.computed("students.@each.isHired", function(){
 		return this.get("students").reduce((previous, current) => {
 			return current.get("isHired") ? previous += 1 : previous;
 		}, 0);
 	}),
-	studentCount: Ember.computed("students.@each", function(){
-		return this.get("students.length");
+	deadlinePassed: Ember.computed("time.today", "daysToHiringDeadline", function(){
+		return this.get("daysToHiringDeadline") < 0;
 	}),
-	cohortComplete: Ember.computed("today", "lastDay", function(){
-		return this.get("lastDay") < this.get("today");
-	})
+	cohortComplete: Ember.computed("time.today", "lastDay", function(){
+		return this.get("lastDay") < this.get("time.today");
+	}),
+	totalDays: Ember.computed("firstDay", "lastDay", function(){
+		return this.dayDifference(this.get("lastDay"), this.get("firstDay"));
+	}),
+	daysToHiringDeadline: Ember.computed("time.today", "hiringDeadline", function(){
+		return this.dayDifference(this.get("hiringDeadline"), this.get("time.today"));
+	}),
+	daysElapsed: Ember.computed("firstDay", "time.today", function(){
+		return this.dayDifference(this.get("time.today"), this.get("firstDay"));
+	}),
+	daysRemaining: Ember.computed("lastDay", "time.today", function(){
+		return this.dayDifference(this.get("lastDay"), this.get("time.today"));
+	}),
+	proportionElapsed: Ember.computed("daysElapsed", "totalDays", function(){
+		return Math.floor((this.get("daysElapsed") / this.get("totalDays")) * 100);
+	}),
+	percentageElapsed: Ember.computed("proportionElapsed", function(){
+		return `${this.get("proportionElapsed")}%`;
+	}),
+	dayDifference(laterDay, earlierDay){
+		return Math.floor((new Date(laterDay) - new Date(earlierDay)) / (1000 * 60 * 60 * 24));
+	}
+	// scores: Ember.computed("students.@each.performances.@each", function(){
+	// 	// return this.get("students").reduce((accumulator, student) => {
+	// 	// 	student.get("performances").forEach(performance => {
+	// 	// 		// Look up score, add to thing, update proportion
+	// 	// 	});
+	// 	// }, []);
+	// 	return [{
+	// 		label: "0",
+	// 		proportion: 0.25,
+	// 		percentage: "25%"
+	// 	},{
+	// 		label: "1",
+	// 		proportion: 0.25,
+	// 		percentage: "25%"
+	// 	},{
+	// 		label: "2",
+	// 		proportion: 0.25,
+	// 		percentage: "25%"
+	// 	},{
+	// 		label: "3",
+	// 		proportion: 0.25,
+	// 		percentage: "25%"
+	// 	}];
+	// }),
 });

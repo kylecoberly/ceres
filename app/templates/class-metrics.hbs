@@ -1,10 +1,28 @@
-<section class="metrics">
-	<h2>Class Metrics</h2>
-	<div class="hiring">
+<section class="jobs">
+	<h2 data-test-metrics-jobs-heading>Jobs</h2>
+	<ul>
 		{{#each sortedCohorts as |cohort|}}
 			{{#if cohort.isActive}}
-				{{cohort-job-stats cohort=cohort}}
+				{{cohort-job-stats
+					cohort=cohort
+					tagName="li"
+					data-test-cohort-job-stats=true
+				}}
 			{{/if}}
 		{{/each}}
-	</div>
+	</ul>
+</section>
+<section class="mastery">
+	<h2 data-test-metrics-mastery-heading>Mastery</h2>
+	<ul>
+		{{#each sortedCohorts as |cohort|}}
+			{{#unless cohort.isComplete}}
+				{{cohort-mastery-stats
+					cohort=cohort
+					tagName="li"
+					data-test-cohort-mastery-stats=true
+				}}
+			{{/unless}}
+		{{/each}}
+	</ul>
 </section>

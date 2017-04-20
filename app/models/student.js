@@ -10,5 +10,6 @@ export default DS.Model.extend({
 	isHired: Ember.computed("hireDate", function(){
 		return !!this.get("hireDate");
 	}),
-	hireDate: DS.attr("date")
+	hireDate: DS.attr("date"),
+	performances: DS.hasMany("performance")
 });

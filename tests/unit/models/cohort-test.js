@@ -2,7 +2,7 @@ import Ember from "ember";
 import {moduleForModel, test} from "ember-qunit";
 
 moduleForModel("cohort", "Unit | Model | cohort", {
-	needs: ["model:student"]
+	needs: ["model:student", "model:performance", "service:time"]
 });
 
 test("it can count the number of students", function(assert) {
@@ -39,7 +39,7 @@ test("it can count the number of hired students", function(assert) {
 
 test("it can calculate the median days to hire", function(assert) {
 	let model = this.subject({
-		lastDay: "2017-02-01"
+		lastDay: new Date("2017-02-01")
 	});
 
 	Ember.run(() => {
@@ -59,32 +59,144 @@ test("it can calculate the median days to hire", function(assert) {
 });
 
 test("it can calculate time remaining for a cohort", function(assert) {
+	var mockTimeService = Ember.Service.extend({
+		today: new Date("2017-02-01")
+	});
+	this.register("service:time", mockTimeService);
 	let model = this.subject({
-		today: "2017-02-01",
-		hiringDeadline: "2017-02-03"
+		hiringDeadline: new Date("2017-02-03")
 	});
 
 	assert.equal(model.get("daysToHiringDeadline"), 2);
 });
 
-test("it can calculate whether a deadline has passed", function(assert) {
+test("it can calculate whether a deadline hasn't passed", function(assert) {
+	var mockTimeService = Ember.Service.extend({
+		today: new Date("2017-01-01")
+	});
+	this.register("service:time", mockTimeService);
 	let model = this.subject({
-		today: "2017-01-01",
-		hiringDeadline: "2017-01-02"
+		hiringDeadline: new Date("2017-01-02")
 	});
 
 	assert.equal(model.get("deadlinePassed"), false, "shows not passed");
-	Ember.run(() => model.set("today", "2017-02-01"));
+});
+
+test("it can calculate whether a deadline has passed", function(assert) {
+	var mockTimeService = Ember.Service.extend({
+		today: new Date("2017-02-01")
+	});
+	this.register("service:time", mockTimeService);
+	let model = this.subject({
+		hiringDeadline: new Date("2017-01-01")
+	});
+
 	assert.equal(model.get("deadlinePassed"), true, "shows passed");
 });
 
-test("it can calculate whether or not the cohort has ended", function(assert) {
+test("it can calculate if the cohort has not ended", function(assert) {
+	var mockTimeService = Ember.Service.extend({
+		today: new Date("2017-01-01")
+	});
+	this.register("service:time", mockTimeService);
 	let model = this.subject({
-		today: "2017-01-01",
-		lastDay: "2017-01-02"
+		lastDay: new Date("2017-01-02")
 	});
 
 	assert.equal(model.get("cohortComplete"), false, "shows not complete");
-	Ember.run(() => model.set("today", "2017-02-01"));
+});
+
+test("it can calculate if the cohort has ended", function(assert) {
+	var mockTimeService = Ember.Service.extend({
+		today: new Date("2017-02-01")
+	});
+	this.register("service:time", mockTimeService);
+	let model = this.subject({
+		lastDay: new Date("2017-01-02")
+	});
+
 	assert.equal(model.get("cohortComplete"), true, "shows complete");
+});
+
+// test("it can calculate the score proportions for a cohort", function(assert) {
+// 	let model;
+// 	Ember.run(() => {
+// 		var performances = [
+// 			this.store().createRecord("performance", {score: 0}),
+// 			this.store().createRecord("performance", {score: 0}),
+// 			this.store().createRecord("performance", {score: 0}),
+// 			this.store().createRecord("performance", {score: 0})
+// 		]
+// 		var students = [
+// 			this.store().createRecord("student", {performances: [performances[0], performances[1]]}),
+// 			this.store().createRecord("student", {performances: [performances[2], performances[3]]})
+// 		];
+// 		model = this.subject({
+// 			students: [students[0], students[1]]
+// 		});
+// 	});
+
+// 	assert.deepEqual(model.get("scores"), [{
+// 		label: "0",
+// 		proportion: 0.25,
+// 		percentage: "25%"
+// 	},{
+// 		label: "1",
+// 		proportion: 0.25,
+// 		percentage: "25%"
+// 	},{
+// 		label: "2",
+// 		proportion: 0.25,
+// 		percentage: "25%"
+// 	},{
+// 		label: "3",
+// 		proportion: 0.25,
+// 		percentage: "25%"
+// 	}]);
+// });
+
+test("it can calculate the days elapsed in a cohort", function(assert) {
+	var mockTimeService = Ember.Service.extend({
+		today: new Date("2017-01-02")
+	});
+	this.register("service:time", mockTimeService);
+	let model = this.subject({
+		firstDay: new Date("2017-01-01")
+	});
+
+	assert.equal(model.get("daysElapsed"), 1);
+});
+
+test("it can calculate the days remaining in a cohort", function(assert) {
+	var mockTimeService = Ember.Service.extend({
+		today: new Date("2017-01-01")
+	});
+	this.register("service:time", mockTimeService);
+	let model = this.subject({
+		lastDay: new Date("2017-01-10")
+	});
+
+	assert.equal(model.get("daysRemaining"), 9);
+});
+
+test("it can calculate the total days in a cohort", function(assert) {
+	let model = this.subject({
+		firstDay: new Date("2017-01-01"),
+		lastDay: new Date("2017-01-05")
+	});
+
+	assert.equal(model.get("totalDays"), 4);
+});
+
+test("it can calculate the percentage of time elapsed in a cohort", function(assert) {
+	var mockTimeService = Ember.Service.extend({
+		today: new Date("2017-01-02")
+	});
+	this.register("service:time", mockTimeService);
+	let model = this.subject({
+		firstDay: new Date("2017-01-01"),
+		lastDay: new Date("2017-01-05")
+	});
+
+	assert.equal(model.get("percentageElapsed"), "25%");
 });

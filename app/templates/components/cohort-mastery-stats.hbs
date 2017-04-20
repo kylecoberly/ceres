@@ -1,0 +1,18 @@
+<div class="chart-container">
+	<div class="mastery-stats">
+		<div class="elapsed-fill" style={{timeElapsedStyle}}></div>
+		<ol data-test-cohort-mastery-scores>
+			{{#each cohort.scores as |score|}}
+				<li class="score score-{{score.label}}" style={{score.style}} data-test-mastery-score>{{score.percentage}}</li>
+			{{/each}}
+		</ol>
+		<div class="remaining-fill" style={{timeRemainingStyle}}></div>
+	</div>
+	<div class="cohort-time">
+		<div class="time-elapsed" style={{timeElapsedStyle}} data-test-time-elapsed>{{material-design-icon name="schedule"}} {{cohort.percentageElapsed}}</div>
+		<div class="time-remaining" style={{timeRemainingStyle}}></div>
+	</div>
+</div>
+<div class="cohort-label">
+	<img data-test-cohort-label src={{cohort.logoUrl}} alt="{{cohort.label}}" />
+</div>

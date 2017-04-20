@@ -1,0 +1,14 @@
+<section class="mastery">
+	<h2 data-test-metrics-mastery-heading>Mastery</h2>
+	<ul>
+		{{#each sortedCohorts as |cohort|}}
+			{{#unless cohort.isComplete}}
+				{{cohort-mastery-stats
+					cohort=cohort
+					tagName="li"
+					data-test-cohort-mastery-stats=true
+				}}
+			{{/unless}}
+		{{/each}}
+	</ul>
+</section>

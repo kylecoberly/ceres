@@ -7,7 +7,8 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function(){
-	this.route("class-metrics");
+	this.route("mastery-metrics");
+	this.route("job-metrics");
 	this.route("tools");
 	this.route("mission");
 	this.route("schedules");

@@ -1,6 +1,6 @@
-{{#navigation-menu}}
+{{#navigation-menu menuItems=menuItems}}
 	{{#unless media.isMobile}}
-		{{navigation-sidebar}}
+		{{navigation-sidebar menuItems=menuItems}}
 	{{/unless}}
 	<main>
 		{{outlet}}

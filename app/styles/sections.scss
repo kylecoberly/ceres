@@ -1,8 +1,7 @@
 section {
 	background-color: $white;
 	padding: 2rem;
-	box-shadow: 1px 1px 1px $black;
-	padding: 2rem;
+	@include light-shadow;
 	&:not(:last-child){
 		margin-bottom: 1rem;
 	}

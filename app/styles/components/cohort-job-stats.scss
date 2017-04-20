@@ -1,21 +1,15 @@
 .cohort-job-stats {
-	display: flex;
-	flex-flow: row nowrap;
-	background-color: $light-grey;
-	margin-bottom: 1rem;
-	width: 25rem;
-	padding: 2rem 2rem 2rem 0;
-	box-shadow: 1px 1px 1px $black;
-	h3 {
-		font-weight: 300;
-	}
+	$widget-width: 25rem;
+	$logo-width: 5rem;
+	@include flex-row;
+	@include card;
+	width: $widget-width;
 	.cohort-label {
-		padding: 1rem;
-		min-width: 5rem;
+		margin-right: 1rem;
 		align-self: center;
 		justify-self: center;
-		h3 {
-			font-size: 2rem;
+		img {
+			max-width: $logo-width;
 		}
 	}
 	.job-stats {
@@ -25,8 +19,15 @@
 			h3, p {
 				display: inline;
 			}
+			h3 {
+				font-weight: 300;
+			}
 			p {
 				margin-left: 0.5rem;
+				font-weight: 700;
+				span.alert {
+					color: $red;
+				}
 			}
 		}
 	}

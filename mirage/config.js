@@ -14,6 +14,8 @@ export default function() {
 	this.get("/cohorts/:id");
 	this.get("/students");
 	this.get("/students/:id");
+	this.get("/performances");
+	this.get("/performances/:id");
 	// These comments are here to help you get started. Feel free to delete them.
 
 	/*

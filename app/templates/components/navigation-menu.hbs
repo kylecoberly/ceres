@@ -5,21 +5,11 @@
 	{{#burger.menu itemTagName="li" as |menu|}}
 		{{material-design-icon click=burger.state.actions.close name="close"}}
 		<ul {{action burger.state.actions.close}}>
-			{{#menu.item}}
-				{{#link-to "index"}}Home{{/link-to}}
-			{{/menu.item}}
-			{{#menu.item}}
-				{{#link-to "class-metrics"}}Classroom Metrics{{/link-to}}
-			{{/menu.item}}
-			{{#menu.item}}
-				{{#link-to "schedules"}}Schedules{{/link-to}}
-			{{/menu.item}}
-			{{#menu.item}}
-				{{#link-to "mission"}}Mission & Values{{/link-to}}
-			{{/menu.item}}
-			{{#menu.item}}
-				{{#link-to "tools"}}Tools{{/link-to}}
-			{{/menu.item}}
+			{{#each menuItems as |menuItem|}}
+				{{#menu.item}}
+					{{#link-to menuItem.link}}{{menuItem.label}}{{/link-to}}
+				{{/menu.item}}
+			{{/each}}
 		</ul>
 	{{/burger.menu}}
 	{{#burger.outlet}}

@@ -1,0 +1,66 @@
+.cohort-mastery-stats {
+	$widget-width: 175px;
+	$chart-height: 10rem;
+	$logo-height: 4rem;
+	@include flex-column;
+	@include card;
+
+	.chart-container {
+		@include flex-column;
+		width: $widget-width;
+		.mastery-stats {
+			@include flex-row;
+			ol {
+				@include flex-column;
+				height: $chart-height;
+				li {
+					@include flex-center;
+					padding: 0 0.5rem;
+					@include small-font;
+					@include light-shadow;
+					&.score-0 {
+						background-color: inherit;
+						color: inherit;
+						box-shadow: inherit;
+						text-shadow: inherit;
+					}
+					&.score-1 {
+						@include light-gradient($red);
+					}
+					&.score-2 {
+						@include light-gradient($yellow);
+					}
+					&.score-3 {
+						@include light-gradient($green);
+						@include thick-font;
+					}
+				}
+			}
+		}
+		.cohort-time {
+			@include flex-row;
+			@include light-shadow;
+			.time-elapsed {
+				padding: 0.2rem 0;
+				@include light-gradient($secondary-color);
+				@include thick-font;
+				text-align: center;
+				.mdi-schedule {
+					font-size: 0.90rem;
+					transform: translateY(1px);
+				}
+			}
+			.time-remaining {
+				padding: 0.2rem 0;
+				background-color: $white;
+			}
+		}
+	}
+	.cohort-label {
+		padding-top: 0.5rem;
+		text-align: center;
+		img {
+			max-height: $logo-height;
+		}
+	}
+}

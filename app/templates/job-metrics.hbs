@@ -1,0 +1,14 @@
+<section class="jobs">
+	<h2 data-test-metrics-jobs-heading>Jobs</h2>
+	<ul>
+		{{#each sortedCohorts as |cohort|}}
+			{{#if cohort.isActive}}
+				{{cohort-job-stats
+					cohort=cohort
+					tagName="li"
+					data-test-cohort-job-stats=true
+				}}
+			{{/if}}
+		{{/each}}
+	</ul>
+</section>

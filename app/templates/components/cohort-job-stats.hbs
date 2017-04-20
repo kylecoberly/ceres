@@ -1,15 +1,14 @@
 <div class="cohort-label">
-	<h3 data-test-cohort-label={{cohort.id}}>{{cohort.label}}</h3>
+	<img data-test-cohort-label src={{cohort.logoUrl}} alt="{{cohort.label}}" />
 </div>
 <div class="job-stats" data-test-cohort-id={{cohort.id}}>
-	<h3>Hired</h3>
 	{{progress-bar
 		max=cohort.studentCount
 		value=cohort.totalHired
 	}}
 	{{#if cohort.medianDaysToHire}}
 		<div class="average" data-test-average>
-			<h3>Average:</h3>
+			<h3>Median:</h3>
 			<p data-test-cohort-median-days-to-hire>{{cohort.medianDaysToHire}} days</p>
 		</div>
 	{{/if}}
@@ -17,7 +16,7 @@
 		<h3>Deadline:</h3>
 		<p data-test-days-remaining={{cohort.id}}>
 			{{#if cohort.deadlinePassed}}
-				PASSED
+				<span class="alert">PASSED</span>
 			{{else}}
 				{{cohort.daysToHiringDeadline}} days
 			{{/if}}

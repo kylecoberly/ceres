@@ -1,7 +1,8 @@
 import Ember from "ember";
 import DS from "ember-data";
+import cohortTime from "../mixins/cohort-time-utilities";
 
-export default DS.Model.extend({
+export default DS.Model.extend(cohortTime, {
 	label: DS.attr(),
 	firstDay: DS.attr("date"),
 	lastDay: DS.attr("date"),
@@ -9,9 +10,11 @@ export default DS.Model.extend({
 	isActive: DS.attr("boolean"),
 	logoNumber: DS.attr(),
 	students: DS.hasMany("student", {async: true}),
-	time: Ember.inject.service("time"),
 	studentCount: Ember.computed("students.@each", function(){
 		return this.get("students.length");
+	}),
+	logoUrl: Ember.computed("logoNumber", function(){
+		return `https://badge.galvanize.network/${this.get("logoNumber")}.png`;
 	}),
 	medianDaysToHire: Ember.computed("lastDay", "students.@each.hireDate", function(){
 		var hireDates = this.get("students")
@@ -27,34 +30,6 @@ export default DS.Model.extend({
 			return current.get("isHired") ? previous += 1 : previous;
 		}, 0);
 	}),
-	deadlinePassed: Ember.computed("time.today", "daysToHiringDeadline", function(){
-		return this.get("daysToHiringDeadline") < 0;
-	}),
-	cohortComplete: Ember.computed("time.today", "lastDay", function(){
-		return this.get("lastDay") < this.get("time.today");
-	}),
-	totalDays: Ember.computed("firstDay", "lastDay", function(){
-		return this.dayDifference(this.get("lastDay"), this.get("firstDay"));
-	}),
-	daysToHiringDeadline: Ember.computed("time.today", "hiringDeadline", function(){
-		return this.dayDifference(this.get("hiringDeadline"), this.get("time.today"));
-	}),
-	daysElapsed: Ember.computed("firstDay", "time.today", function(){
-		return this.dayDifference(this.get("time.today"), this.get("firstDay"));
-	}),
-	daysRemaining: Ember.computed("lastDay", "time.today", function(){
-		return this.dayDifference(this.get("lastDay"), this.get("time.today"));
-	}),
-	proportionElapsed: Ember.computed("daysElapsed", "totalDays", function(){
-		var elapsed = (this.get("daysElapsed") / this.get("totalDays"));
-		return (elapsed > 1) ? 1 : elapsed;
-	}),
-	percentageElapsed: Ember.computed("proportionElapsed", function(){
-		return `${Math.floor(this.get("proportionElapsed") * 100)}%`;
-	}),
-	dayDifference(laterDay, earlierDay){
-		return Math.floor((new Date(laterDay) - new Date(earlierDay)) / (1000 * 60 * 60 * 24));
-	},
 	performances: Ember.computed("students.@each.performances", function(){
 		return this.get("students").reduce((performances, student) => {
 			student.get("performances").forEach(performance => {
@@ -83,10 +58,8 @@ export default DS.Model.extend({
 		}, new Ember.A()).map(score => {
 			score.proportion = score.count / totalScoreCount;
 			score.percentage = `${Math.floor(score.proportion * 100)}%`;
+			score.style = Ember.String.htmlSafe(`flex-grow: ${Math.floor(score.proportion * 100)};`);
 			return score;
 		}).sortBy("label");
-	}),
-	logoUrl: Ember.computed("logoNumber", function(){
-		return `https://badge.galvanize.network/${this.get("logoNumber")}.png`;
 	})
 });

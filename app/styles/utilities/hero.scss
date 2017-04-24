@@ -1,12 +1,10 @@
 .hero {
 	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/hero.jpg");
+	background-repeat: no-repeat;
 	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	@include flex-center;
 	h2 {
 		@include thick-font;
-		color: $white;
 		font-size: 4rem;
 		margin-bottom: 3rem;
 		text-align: center;

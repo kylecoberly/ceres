@@ -5,12 +5,14 @@
 
 @mixin header-font {
 	font-size: 2rem;
+	color: $white;
 }
 
 @mixin thick-font {
 	color: $white;
 	font-weight: 700;
 	line-height: initial;
+	text-shadow: 0.5px 0.5px $dark-grey;
 }
 
 @mixin subheader-font {
@@ -36,6 +38,12 @@
 	font-size: 1.5rem;
 	font-weight: 700;
 	margin-bottom: 0.5rem;
+}
+
+@mixin small-font {
+	font-size: 1rem;
+	text-shadow: 0.5px 0.5px $dark-grey;
+	color: darken($white, 5%);
 }
 
 p {

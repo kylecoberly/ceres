@@ -1,8 +1,7 @@
 .navigation-sidebar {
 	@include thick-font;
-	color: $white;
+	@include light-shadow;
 	background-color: $neutral-dark;
-	box-shadow: 1px 1px 1px $black;
 	z-index: 5;
 	nav {
 		li {

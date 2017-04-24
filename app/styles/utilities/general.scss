@@ -1,0 +1,25 @@
+@mixin flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+@mixin flex-column {
+	display: flex;
+	flex-flow: column nowrap;
+}
+@mixin flex-row {
+	display: flex;
+	flex-flow: row nowrap;
+}
+@mixin card {
+	margin-bottom: 1rem;
+	padding: 1rem 2rem;
+	background-color: $light-grey;
+	@include light-shadow;
+}
+@mixin light-gradient ($color) {
+	background: linear-gradient(to top, $color, lighten($color, 12%));
+}
+@mixin light-shadow {
+	box-shadow: 1px 1px 1px $black;
+}

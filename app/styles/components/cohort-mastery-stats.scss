@@ -1,61 +1,50 @@
 .cohort-mastery-stats {
-	display: flex;
-	flex-flow: column nowrap;
-	background-color: $light-grey;
-	margin-bottom: 1rem;
-	padding: 1rem 2rem;
-	box-shadow: 1px 1px 1px $black;
+	$widget-width: 175px;
+	$chart-height: 10rem;
+	$logo-height: 4rem;
+	@include flex-column;
+	@include card;
+
 	.chart-container {
-		display: flex;
-		flex-flow: column nowrap;
-		width: 175px;
+		@include flex-column;
+		width: $widget-width;
 		.mastery-stats {
-			display: flex;
-			flex-flow: row nowrap;
-			ul {
-				display: flex;
-				flex-flow: column nowrap;
-				height: 10rem;
+			@include flex-row;
+			ol {
+				@include flex-column;
+				height: $chart-height;
 				li {
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					font-size: 0.75rem;
+					@include flex-center;
 					padding: 0 0.5rem;
-					color: $white;
-					text-shadow: 0.5px 0.5px $dark-grey;
+					@include small-font;
+					@include light-shadow;
 					&.score-0 {
-						background-color: $light-grey;
-						color: $black;
+						background-color: inherit;
+						color: inherit;
+						box-shadow: inherit;
+						text-shadow: inherit;
 					}
 					&.score-1 {
-						background: linear-gradient(to top, $red 30%, lighten($red, 12%));
-						box-shadow: 1px 1px 1px $black;
+						@include light-gradient($red);
 					}
 					&.score-2 {
-						background: linear-gradient(to top, $yellow, lighten($yellow, 22%));
-						box-shadow: 1px 1px 1px $black;
+						@include light-gradient($yellow);
 					}
 					&.score-3 {
-						font-size: 1rem;
-						font-weight: 700;
-						background: linear-gradient(to top, $green, lighten($green, 12%));
-						color: $white;
-						box-shadow: 1px 1px 1px $black;
+						@include light-gradient($green);
+						@include thick-font;
 					}
 				}
 			}
 		}
 		.cohort-time {
-			display: flex;
-			flex-flow: row nowrap;
-			box-shadow: 1px 1px 1px $black;
+			@include flex-row;
+			@include light-shadow;
 			.time-elapsed {
 				padding: 0.2rem 0;
-				text-align: center;
-				background: linear-gradient(to top, darken($secondary-color, 9%) 30%, $secondary-color);
+				@include light-gradient($secondary-color);
 				@include thick-font;
-				text-shadow: 0.5px 0.5px $dark-grey;
+				text-align: center;
 				.mdi-schedule {
 					font-size: 0.90rem;
 					transform: translateY(1px);
@@ -69,11 +58,9 @@
 	}
 	.cohort-label {
 		padding-top: 0.5rem;
-		align-self: center;
-		justify-self: center;
 		text-align: center;
 		img {
-			max-height: 4rem;
+			max-height: $logo-height;
 		}
 	}
 }

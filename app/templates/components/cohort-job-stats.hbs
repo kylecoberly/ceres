@@ -16,7 +16,7 @@
 		<h3>Deadline:</h3>
 		<p data-test-days-remaining={{cohort.id}}>
 			{{#if cohort.deadlinePassed}}
-				PASSED
+				<span class="alert">PASSED</span>
 			{{else}}
 				{{cohort.daysToHiringDeadline}} days
 			{{/if}}

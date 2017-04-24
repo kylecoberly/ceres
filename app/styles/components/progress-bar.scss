@@ -1,22 +1,17 @@
 .progress-bar {
 	width: 100%;
-	font-size: 1rem;
 	line-height: 2rem;
-	display: flex;
-	flex-flow: row nowrap;
+	@include flex-row;
 	.bar {
 		display: flex;
-		box-shadow: 1px 1px 1px $black;
 		flex-grow: 1;
+		@include light-shadow;
 		.complete, .remaining {
-			display: flex;
-			align-items: center;
+			@include flex-center;
 		}
 		.complete {
-			justify-content: center;
 			padding: 0 1rem;
 			background-color: $secondary-color;
-			color: $white;
 			@include thick-font;
 		}
 	}

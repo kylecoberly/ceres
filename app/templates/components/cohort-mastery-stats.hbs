@@ -1,11 +1,11 @@
 <div class="chart-container">
 	<div class="mastery-stats">
 		<div class="elapsed-fill" style={{timeElapsedStyle}}></div>
-		<ul data-test-cohort-mastery-scores>
-			{{#each sortedScores as |score|}}
+		<ol data-test-cohort-mastery-scores>
+			{{#each cohort.scores as |score|}}
 				<li class="score score-{{score.label}}" style={{score.style}} data-test-mastery-score>{{score.percentage}}</li>
 			{{/each}}
-		</ul>
+		</ol>
 		<div class="remaining-fill" style={{timeRemainingStyle}}></div>
 	</div>
 	<div class="cohort-time">

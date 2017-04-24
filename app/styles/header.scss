@@ -1,12 +1,10 @@
 .app-header {
-	display: flex;
-	flex-flow: row nowrap;
+	@include flex-row;
 	align-items: center;
 	position: relative;
 	height: 60px;
 	padding: 1rem;
 	@include header-font;
-	color: $white;
 	background-color: $black;
 	box-shadow: 0 2px 2px $black;
 	z-index: 10;

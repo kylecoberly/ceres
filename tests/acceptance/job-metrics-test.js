@@ -18,7 +18,7 @@ test("It should show job statistics", function(assert){
 
 	jobsPage.visit();
 	andThen(function(){
-		assert.equal(currentURL(), "/class-metrics", "Correct URL");
+		assert.equal(currentURL(), "/job-metrics", "Correct URL");
 		assert.equal(jobsPage.cohorts(0).label, "g[99]", "Correct cohort label");
 		assert.equal(jobsPage.cohorts(0).jobProgressPercentage, "50%", "Correct percentage");
 	});

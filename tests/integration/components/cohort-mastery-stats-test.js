@@ -59,9 +59,9 @@ test("it shows statistics correctly", function(assert){
 	masteryPage.render(hbs`{{cohort-mastery-stats cohort=cohort data-test-cohort-mastery-stats=true}}`);
 
 	assert.equal(masteryPage.cohorts(0).label, "g99", "Shows label correctly");
-	// assert.equal(masteryPage.cohorts(0).mastery(3).score, "13%", "Shows 3s correctly");
-	// assert.equal(masteryPage.cohorts(0).mastery(2).score, "25%", "Shows 2s correctly");
-	// assert.equal(masteryPage.cohorts(0).mastery(1).score, "38%", "Shows 1s correctly");
-	// assert.equal(masteryPage.cohorts(0).mastery(0).score, "24%%", "Shows 0s correctly");
+	assert.equal(masteryPage.cohorts(0).mastery(3).score, "13%", "Shows 3s correctly");
+	assert.equal(masteryPage.cohorts(0).mastery(2).score, "25%", "Shows 2s correctly");
+	assert.equal(masteryPage.cohorts(0).mastery(1).score, "38%", "Shows 1s correctly");
+	assert.equal(masteryPage.cohorts(0).mastery(0).score, "24%", "Shows 0s correctly");
 	assert.equal(masteryPage.cohorts(0).timeElapsed, "50%", "Shows time elapsed correctly");
 });

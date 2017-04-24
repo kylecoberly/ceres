@@ -2,17 +2,18 @@ import Ember from "ember";
 import {moduleForModel, test} from "ember-qunit";
 
 moduleForModel("cohort", "Unit | Model | cohort", {
-	needs: ["model:student", "model:performance", "service:time"]
+	needs: ["model:student", "model:performance", "model:standard", "service:time"]
 });
 
 test("it can count the number of students", function(assert) {
 	let model = this.subject();
 
 	Ember.run(() => {
-		let student1 = this.store().createRecord("student", {});
-		let student2 = this.store().createRecord("student", {});
-		let student3 = this.store().createRecord("student", {});
-		model.set("students", [student1, student2, student3]);
+		model.set("students", [
+			this.store().createRecord("student", {}),
+			this.store().createRecord("student", {}),
+			this.store().createRecord("student", {})
+		]);
 	});
 
 	assert.equal(model.get("studentCount"), 3);
@@ -22,16 +23,11 @@ test("it can count the number of hired students", function(assert) {
 	let model = this.subject();
 
 	Ember.run(() => {
-		let student1 = this.store().createRecord("student", {
-			isHired: true
-		});
-		let student2 = this.store().createRecord("student", {
-			isHired: true
-		});
-		let student3 = this.store().createRecord("student", {
-			isHired: false
-		});
-		model.set("students", [student1, student2, student3]);
+		model.set("students", [
+			this.store().createRecord("student", {isHired: true}),
+			this.store().createRecord("student", {isHired: true}),
+			this.store().createRecord("student", {isHired: false})
+		]);
 	});
 
 	assert.equal(model.get("totalHired"), 2);
@@ -43,16 +39,11 @@ test("it can calculate the median days to hire", function(assert) {
 	});
 
 	Ember.run(() => {
-		let student1 = this.store().createRecord("student", {
-			hireDate: "2017-02-02"
-		});
-		let student2 = this.store().createRecord("student", {
-			hireDate: "2017-02-03"
-		});
-		let student3 = this.store().createRecord("student", {
-			hireDate: "2017-02-04"
-		});
-		model.set("students", [student1, student2, student3]);
+		model.set("students", [
+			this.store().createRecord("student", {hireDate: "2017-02-02"}),
+			this.store().createRecord("student", {hireDate: "2017-02-03"}),
+			this.store().createRecord("student", {hireDate: "2017-02-04"})
+		]);
 	});
 
 	assert.equal(model.get("medianDaysToHire"), 2);
@@ -118,43 +109,6 @@ test("it can calculate if the cohort has ended", function(assert) {
 	assert.equal(model.get("cohortComplete"), true, "shows complete");
 });
 
-// test("it can calculate the score proportions for a cohort", function(assert) {
-// 	let model;
-// 	Ember.run(() => {
-// 		var performances = [
-// 			this.store().createRecord("performance", {score: 0}),
-// 			this.store().createRecord("performance", {score: 0}),
-// 			this.store().createRecord("performance", {score: 0}),
-// 			this.store().createRecord("performance", {score: 0})
-// 		]
-// 		var students = [
-// 			this.store().createRecord("student", {performances: [performances[0], performances[1]]}),
-// 			this.store().createRecord("student", {performances: [performances[2], performances[3]]})
-// 		];
-// 		model = this.subject({
-// 			students: [students[0], students[1]]
-// 		});
-// 	});
-
-// 	assert.deepEqual(model.get("scores"), [{
-// 		label: "0",
-// 		proportion: 0.25,
-// 		percentage: "25%"
-// 	},{
-// 		label: "1",
-// 		proportion: 0.25,
-// 		percentage: "25%"
-// 	},{
-// 		label: "2",
-// 		proportion: 0.25,
-// 		percentage: "25%"
-// 	},{
-// 		label: "3",
-// 		proportion: 0.25,
-// 		percentage: "25%"
-// 	}]);
-// });
-
 test("it can calculate the days elapsed in a cohort", function(assert) {
 	var mockTimeService = Ember.Service.extend({
 		today: new Date("2017-01-02")
@@ -199,4 +153,85 @@ test("it can calculate the percentage of time elapsed in a cohort", function(ass
 	});
 
 	assert.equal(model.get("percentageElapsed"), "25%");
+});
+
+test("it returns 100% time elapsed if the cohort is over", function(assert) {
+	var mockTimeService = Ember.Service.extend({
+		today: new Date("2017-02-01")
+	});
+	this.register("service:time", mockTimeService);
+	let model = this.subject({
+		firstDay: new Date("2017-01-01"),
+		lastDay: new Date("2017-01-02")
+	});
+
+	assert.equal(model.get("percentageElapsed"), "100%");
+});
+
+test("it can aggregate student performances", function(assert){
+	let model;
+	Ember.run(() => {
+		model = this.subject({
+			students: [
+				this.store().createRecord("student", {
+					id: 1,
+					performances: [this.store().createRecord("performance", {
+						score: "1"
+					})]
+				}),
+				this.store().createRecord("student", {
+					id: 2,
+					performances: [this.store().createRecord("performance", {
+						score: "3"
+					})]
+				})
+			]
+		});
+	});
+
+	assert.deepEqual(model.get("performances"), [{
+		studentId: "1",
+		score: "1"
+	},{
+		studentId: "2",
+		score: "3"
+	}]);
+});
+
+test("it can calculate cohort performances", function(assert){
+	let model = this.subject({
+		performances: [{
+			score: "0"
+		},{
+			score: "1"
+		},{
+			score: "1"
+		},{
+			score: "3"
+		},{
+			score: "2"
+		}]
+	});
+
+	assert.deepEqual(model.get("scores"), [{
+		count: 1,
+		label: "0",
+		proportion: 0.20,
+		percentage: "20%"
+	},{
+		count: 2,
+		label: "1",
+		proportion: 0.40,
+		percentage: "40%"
+	},{
+		count: 1,
+		label: "2",
+		proportion: 0.20,
+		percentage: "20%"
+	},{
+		count: 1,
+		label: "3",
+		proportion: 0.20,
+		percentage: "20%"
+	}]);
 });

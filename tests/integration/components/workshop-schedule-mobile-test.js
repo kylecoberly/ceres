@@ -1,9 +1,15 @@
 import {moduleForComponent, test} from "ember-qunit";
 import hbs from "htmlbars-inline-precompile";
-import testSelector from "ember-test-selectors";
+import workshopScheduleMobile from "../../pages/components/workshop-schedule-mobile";
 
 moduleForComponent("workshop-schedule-mobile", "Integration | Component | workshop schedule mobile", {
-	integration: true
+	integration: true,
+	beforeEach(){
+		workshopScheduleMobile.setContext(this);
+	},
+	afterEach(){
+		workshopScheduleMobile.removeContext();
+	}
 });
 
 test("it shows data", function(assert){
@@ -19,10 +25,10 @@ test("it shows data", function(assert){
 			}]
 		}]
 	});
-	this.render(hbs`{{workshop-schedule-mobile model=model}}`);
+	workshopScheduleMobile.render(hbs`{{workshop-schedule-mobile model=model}}`);
 
-	assert.equal(this.$(testSelector("workshop-name")).text().trim(), "JS");
-	assert.equal(this.$(testSelector("week-label")).text().trim(), "Week 1");
-	assert.equal(this.$(testSelector("date")).text().trim(), "3/15");
-	assert.equal(this.$(testSelector("instructor")).text().trim(), "Kyle");
+	assert.equal(workshopScheduleMobile.name, "JS");
+	assert.equal(workshopScheduleMobile.weekLabel, "Week 1");
+	assert.equal(workshopScheduleMobile.date, "3/15");
+	assert.equal(workshopScheduleMobile.instructor, "Kyle");
 });

@@ -1,15 +1,19 @@
 <div class="cohort-label">
 	<h3 data-test-cohort-label>{{cohort.label}}</h3>
 </div>
-<div class="cohort-time">
-	<div class="time-elapsed" data-test-time-elapsed>{{cohort.percentageElapsed}}</div>
-	<div class="time-remaining"></div>
+<div class="chart-container">
+	<div class="mastery-stats">
+		<div class="elapsed-fill" style={{timeElapsedStyle}}></div>
+		<ul data-test-cohort-mastery-scores>
+			{{#each sortedScores as |score|}}
+				<li class="score score-{{score.label}}" style={{score.style}} data-test-mastery-score>{{score.percentage}}</li>
+			{{/each}}
+		</ul>
+		<div class="remaining-fill" style={{timeRemainingStyle}}></div>
+	</div>
+	<div class="cohort-time">
+		<div class="time-elapsed" style={{timeElapsedStyle}} data-test-time-elapsed>{{cohort.percentageElapsed}}</div>
+		<div class="time-remaining" style={{timeRemainingStyle}}></div>
+	</div>
+	<p class="time-label">Time</p>
 </div>
-<div class="mastery-stats">
-	<ul data-test-cohort-mastery-scores>
-		{{#each cohort.scores as |score|}}
-			<li class="score score-{{score.label}}" data-test-mastery-score>{{score.percentage}}</li>
-		{{/each}}
-	</ul>
-</div>
-

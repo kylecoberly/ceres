@@ -8,7 +8,7 @@ import {
 import testSelector from "ember-test-selectors";
 
 export default create({
-	visit: visitable("/class-metrics"),
+	visit: visitable("/job-metrics"),
 	heading: text(testSelector("metrics-mastery-heading")),
 	cohorts: collection({
 		itemScope: testSelector("cohort-job-stats"),

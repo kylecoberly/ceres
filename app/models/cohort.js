@@ -45,36 +45,43 @@ export default DS.Model.extend({
 		return this.dayDifference(this.get("lastDay"), this.get("time.today"));
 	}),
 	proportionElapsed: Ember.computed("daysElapsed", "totalDays", function(){
-		return Math.floor((this.get("daysElapsed") / this.get("totalDays")) * 100);
+		var elapsed = (this.get("daysElapsed") / this.get("totalDays"));
+		return (elapsed > 1) ? 1 : elapsed;
 	}),
 	percentageElapsed: Ember.computed("proportionElapsed", function(){
-		return `${this.get("proportionElapsed")}%`;
+		return `${Math.floor(this.get("proportionElapsed") * 100)}%`;
 	}),
 	dayDifference(laterDay, earlierDay){
 		return Math.floor((new Date(laterDay) - new Date(earlierDay)) / (1000 * 60 * 60 * 24));
-	}
-	// scores: Ember.computed("students.@each.performances.@each", function(){
-	// 	// return this.get("students").reduce((accumulator, student) => {
-	// 	// 	student.get("performances").forEach(performance => {
-	// 	// 		// Look up score, add to thing, update proportion
-	// 	// 	});
-	// 	// }, []);
-	// 	return [{
-	// 		label: "0",
-	// 		proportion: 0.25,
-	// 		percentage: "25%"
-	// 	},{
-	// 		label: "1",
-	// 		proportion: 0.25,
-	// 		percentage: "25%"
-	// 	},{
-	// 		label: "2",
-	// 		proportion: 0.25,
-	// 		percentage: "25%"
-	// 	},{
-	// 		label: "3",
-	// 		proportion: 0.25,
-	// 		percentage: "25%"
-	// 	}];
-	// }),
+	},
+	performances: Ember.computed("students.@each.performances", function(){
+		return this.get("students").reduce((performances, student) => {
+			student.get("performances").forEach(performance => {
+				performances.push(Object.assign({
+					studentId: student.get("id"),
+				}, performance.getProperties("score")));
+			});
+			return performances;
+		}, []);
+	}),
+	scores: Ember.computed("performances.@each.score", function(){
+		var totalScoreCount = 0;
+		return this.get("performances").reduce((scores, performance) => {
+			totalScoreCount++;
+			let score = scores.findBy("label", performance.score);
+			if (!score){
+				scores.push({
+					label: performance.score,
+					count: 0
+				});
+				score = scores.findBy("label", performance.score);
+			}
+			score.count++;
+			return scores;
+		}, new Ember.A()).map(score => {
+			score.proportion = score.count / totalScoreCount;
+			score.percentage = `${Math.floor(score.proportion * 100)}%`;
+			return score;
+		}).sortBy("label");
+	})
 });

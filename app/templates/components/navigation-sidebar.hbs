@@ -1,9 +1,7 @@
 <nav>
 	<ul>
-		<li>{{#link-to "index"}}Home{{/link-to}}</li>
-		<li>{{#link-to "class-metrics"}}Class Metrics{{/link-to}}</li>
-		<li>{{#link-to "schedules"}}Schedules{{/link-to}}</li>
-		<li>{{#link-to "mission"}}Mission & Values{{/link-to}}</li>
-		<li>{{#link-to "tools"}}Tools{{/link-to}}</li>
+		{{#each menuItems as |menuItem|}}
+			<li>{{#link-to menuItem.link}}{{menuItem.label}}{{/link-to}}</li>
+		{{/each}}
 	</ul>
 </nav>

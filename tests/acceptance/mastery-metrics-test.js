@@ -39,7 +39,7 @@ test("It should show mastery totals per class", function(assert){
 
 	masteryPage.visit();
 
-	andThen(function() {
+	andThen(function(){
 		assert.equal(currentURL(), "/mastery-metrics");
 		assert.equal(masteryPage.heading, "Mastery", "Shows the right heading");
 		assert.equal(masteryPage.cohorts().count, 2, "Correct number of cohorts show up");

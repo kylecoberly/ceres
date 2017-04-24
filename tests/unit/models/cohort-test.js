@@ -235,3 +235,11 @@ test("it can calculate cohort performances", function(assert){
 		percentage: "20%"
 	}]);
 });
+
+test("it should generate an image URL based on a number", function(assert){
+	let model = this.subject({
+		logoNumber: 25
+	});
+
+	assert.equal(model.get("logoUrl"), "https://badge.galvanize.network/25.png");
+});

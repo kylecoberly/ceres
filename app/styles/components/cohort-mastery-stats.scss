@@ -1,14 +1,14 @@
 .cohort-mastery-stats {
 	display: flex;
-	flex-flow: row nowrap;
+	flex-flow: column nowrap;
 	background-color: $light-grey;
 	margin-bottom: 1rem;
-	padding: 2rem 2rem 2rem 0;
+	padding: 1rem 2rem;
 	box-shadow: 1px 1px 1px $black;
 	.chart-container {
 		display: flex;
 		flex-flow: column nowrap;
-		width: 200px;
+		width: 175px;
 		.mastery-stats {
 			display: flex;
 			flex-flow: row nowrap;
@@ -22,21 +22,25 @@
 					justify-content: center;
 					font-size: 0.75rem;
 					padding: 0 0.5rem;
+					color: $white;
+					text-shadow: 0.5px 0.5px $dark-grey;
 					&.score-0 {
 						background-color: $light-grey;
+						color: $black;
 					}
 					&.score-1 {
-						background-color: $red;
+						background: linear-gradient(to top, $red 30%, lighten($red, 12%));
 						box-shadow: 1px 1px 1px $black;
 					}
 					&.score-2 {
-						background-color: $yellow;
+						background: linear-gradient(to top, $yellow, lighten($yellow, 22%));
 						box-shadow: 1px 1px 1px $black;
 					}
 					&.score-3 {
 						font-size: 1rem;
 						font-weight: 700;
-						background-color: $green;
+						background: linear-gradient(to top, $green, lighten($green, 12%));
+						color: $white;
 						box-shadow: 1px 1px 1px $black;
 					}
 				}
@@ -49,27 +53,27 @@
 			.time-elapsed {
 				padding: 0.2rem 0;
 				text-align: center;
-				background-color: $secondary-color;
+				background: linear-gradient(to top, darken($secondary-color, 9%) 30%, $secondary-color);
 				@include thick-font;
+				text-shadow: 0.5px 0.5px $dark-grey;
+				.mdi-schedule {
+					font-size: 0.90rem;
+					transform: translateY(1px);
+				}
 			}
 			.time-remaining {
 				padding: 0.2rem 0;
 				background-color: $white;
 			}
 		}
-		.time-label {
-			font-size: 0.75rem;
-			text-align: center;
-		}
 	}
 	.cohort-label {
-		padding: 1rem;
-		min-width: 5rem;
+		padding-top: 0.5rem;
 		align-self: center;
 		justify-self: center;
-		h3 {
-			font-size: 2rem;
-			font-weight: 300;
+		text-align: center;
+		img {
+			max-height: 4rem;
 		}
 	}
 }

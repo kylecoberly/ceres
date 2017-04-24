@@ -2,6 +2,7 @@ import {
 	create,
 	visitable,
 	text,
+	attribute,
 	collection
 } from "ember-cli-page-object";
 import testSelector from "ember-test-selectors";
@@ -12,7 +13,7 @@ export default create({
 	cohorts: collection({
 		itemScope: testSelector("cohort-mastery-stats"),
 		item: {
-			label: text(testSelector("cohort-label")),
+			label: attribute("alt", testSelector("cohort-label")),
 			timeElapsed: text(testSelector("time-elapsed")),
 			mastery: collection({
 				itemScope: testSelector("mastery-score"),

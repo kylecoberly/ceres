@@ -7,6 +7,7 @@ export default DS.Model.extend({
 	lastDay: DS.attr("date"),
 	hiringDeadline: DS.attr("date"),
 	isActive: DS.attr("boolean"),
+	logoNumber: DS.attr(),
 	students: DS.hasMany("student", {async: true}),
 	time: Ember.inject.service("time"),
 	studentCount: Ember.computed("students.@each", function(){
@@ -57,9 +58,10 @@ export default DS.Model.extend({
 	performances: Ember.computed("students.@each.performances", function(){
 		return this.get("students").reduce((performances, student) => {
 			student.get("performances").forEach(performance => {
-				performances.push(Object.assign({
+				performances.push({
 					studentId: student.get("id"),
-				}, performance.getProperties("score")));
+					score: performance.get("score")
+				});
 			});
 			return performances;
 		}, []);
@@ -83,5 +85,8 @@ export default DS.Model.extend({
 			score.percentage = `${Math.floor(score.proportion * 100)}%`;
 			return score;
 		}).sortBy("label");
+	}),
+	logoUrl: Ember.computed("logoNumber", function(){
+		return `https://badge.galvanize.network/${this.get("logoNumber")}.png`;
 	})
 });

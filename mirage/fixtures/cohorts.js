@@ -1,6 +1,7 @@
 export default [{
 	id: 1,
 	label: "g99",
+	logoNumber: "99",
 	firstDay: "2017-02-01",
 	lastDay: "2017-03-01",
 	hiringDeadline: "2017-04-01",
@@ -9,6 +10,7 @@ export default [{
 },{
 	id: 2,
 	label: "g0",
+	logoNumber: "0",
 	firstDay: "2017-02-01",
 	lastDay: "2017-03-01",
 	hiringDeadline: "2017-04-01",

@@ -120,7 +120,11 @@ test("it can calculate cohort performances", function(assert){
 		}]
 	});
 
-	assert.deepEqual(model.get("scores"), [{
+	assert.deepEqual(model.get("scores").map(score => {
+		// Ugly - gets around the need to compare the HTML stringSafe style
+		delete score.style;
+		return score;
+	}), [{
 		count: 1,
 		label: "0",
 		proportion: 0.20,
